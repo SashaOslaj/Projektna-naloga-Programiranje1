@@ -1,6 +1,7 @@
 from projekt_stadion import *
 import csv
 
+# slovar držav po kontinentih
 slovar_kontinentov ={
     'Europe': ['Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan',
                'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Bulgaria',
@@ -46,6 +47,7 @@ slovar_kontinentov ={
 }
 
 def niz_z_vejico_v_niz(niz):
+    '''Funkcija sprejme niz stevila z vejico in vrne niz stevila brez vejice.'''
     nov_niz = ''
     for i in niz:
         if i != ',':
@@ -55,6 +57,7 @@ def niz_z_vejico_v_niz(niz):
     return nov_niz
 
 def slovar_stadionov(sez):
+    '''Funkcija sprejme seznam stadionov in vrne seznam slovarjev stadionov.'''
     l = []
     for nabor in sez:
         stadion = {}
@@ -79,6 +82,7 @@ def slovar_stadionov(sez):
     return l
 
 def dodaj_kontinente(stadioni, kontinenti):
+    '''Funkcija sprejme niz stabionov in jim doda kontinente.'''
     for stadion in stadioni:
         if stadion['drzava'] in kontinenti['Europe']:
             stadion['kontinent'] = 'Europe'
@@ -96,7 +100,8 @@ def dodaj_kontinente(stadioni, kontinenti):
 
 
 def zapisi_tabelo(slovarji, imena_polj, ime_datoteke):
-     with open(ime_datoteke, 'w', encoding='utf-8') as csv_dat:
+    '''Funkcija sprejme slovar in imena polj in jih zapise v csv datoteko.'''
+    with open(ime_datoteke, 'w', encoding='utf-8') as csv_dat:
          writer = csv.DictWriter(csv_dat, fieldnames=imena_polj)
          writer.writeheader()
          for slovar in slovarji:
